@@ -26,7 +26,7 @@ email headers before downloading the entire message.
 
 %description -l pl
 libspopc jest ³atw± w u¿yciu bibliotek± klienck± POP3. Jej podstawowym
-zadaniem jest dostarczenie ³atego i szybkiego w u¿yciu sposobu do
+zadaniem jest dostarczenie ³atwego i szybkiego w u¿yciu sposobu do
 zaimplementowania klienta POP3 bez potrzeby nauki programowania gniazd
 sieciowych. Warstwa gniazd jest tak¿e dostêpna. libspopc umo¿liwia
 programom ³±czenie siê z wieloma kontami POP i zarz±dzanie poczt±.
