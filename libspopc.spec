@@ -10,16 +10,19 @@ Source0:	http://brouits.free.fr/libspopc/%{name}-%{version}.tar.bz2
 Source1:	http://brouits.free.fr/libspopc/try_autogen.tgz
 # Source1-md5:	f63f8a26294e5b9f21d78275ff99ec55
 URL:		http://brouits.free.fr/libspopc/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-libspopc is a simple-to-use POP3 client library. It's primary goal is to
-provide an easy and quick way to host a POP3 client within a program to
-C developers without exposing them to socket programming. However, the
-socket layer is also accessible. libspopc allows mail programs to
-connect to many POP accounts and manage email. It implements the client
-side of RFC 1939. The email client can download email headers before
-downloading the entire message.
+libspopc is a simple-to-use POP3 client library. It's primary goal is
+to provide an easy and quick way to host a POP3 client within a
+program to C developers without exposing them to socket programming.
+However, the socket layer is also accessible. libspopc allows mail
+programs to connect to many POP accounts and manage email. It
+implements the client side of RFC 1939. The email client can download
+email headers before downloading the entire message.
 
 %description -l pl
 libspopc jest ³atw± w u¿yciu bibliotek± klienck± POP3. Jej podstawowym
@@ -69,7 +72,6 @@ cp -Rf try_autogen/* .
 
 %install
 rm -rf $RPM_BUILD_ROOT
-# create directories if necessary
 install -d $RPM_BUILD_ROOT%{_includedir}
 
 %{__make} install \
