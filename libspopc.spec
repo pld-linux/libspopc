@@ -37,7 +37,7 @@ wiadomo¶ci przed ¶ci±gniêciem jej tre¶ci.
 Summary:	Header files for libspopc library
 Summary(pl):	Pliki nag³ówkowe biblioteki libspopc
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for libspopc library.
@@ -49,7 +49,7 @@ Pliki nag³ówkowe biblioteki libspopc.
 Summary:	Static libspopc library
 Summary(pl):	Statyczna biblioteka libspopc
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libspopc library.
