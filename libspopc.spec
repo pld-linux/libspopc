@@ -1,5 +1,5 @@
 Summary:	simple-to-use POP3 client library
-Summary(pl):	³atwa w u¿ycia biblioteka klienta POP3
+Summary(pl.UTF-8):   Å‚atwa w uÅ¼ycia biblioteka klienta POP3
 Name:		libspopc
 Version:	0.7.2
 Release:	1
@@ -24,37 +24,37 @@ programs to connect to many POP accounts and manage email. It
 implements the client side of RFC 1939. The email client can download
 email headers before downloading the entire message.
 
-%description -l pl
-libspopc jest ³atw± w u¿yciu bibliotek± klienck± POP3. Jej podstawowym
-zadaniem jest dostarczenie ³atwego i szybkiego w u¿yciu sposobu do
+%description -l pl.UTF-8
+libspopc jest Å‚atwÄ… w uÅ¼yciu bibliotekÄ… klienckÄ… POP3. Jej podstawowym
+zadaniem jest dostarczenie Å‚atwego i szybkiego w uÅ¼yciu sposobu do
 zaimplementowania klienta POP3 bez potrzeby nauki programowania gniazd
-sieciowych. Warstwa gniazd jest tak¿e dostêpna. libspopc umo¿liwia
-programom ³±czenie siê z wieloma kontami POP i zarz±dzanie poczt±.
-Implementacja jest zgodna z RFC 1939. Klient mo¿e ¶ci±gn±æ nag³ówki
-wiadomo¶ci przed ¶ci±gniêciem jej tre¶ci.
+sieciowych. Warstwa gniazd jest takÅ¼e dostÄ™pna. libspopc umoÅ¼liwia
+programom Å‚Ä…czenie siÄ™ z wieloma kontami POP i zarzÄ…dzanie pocztÄ….
+Implementacja jest zgodna z RFC 1939. Klient moÅ¼e Å›ciÄ…gnÄ…Ä‡ nagÅ‚Ã³wki
+wiadomoÅ›ci przed Å›ciÄ…gniÄ™ciem jej treÅ›ci.
 
 %package devel
 Summary:	Header files for libspopc library
-Summary(pl):	Pliki nag³ówkowe biblioteki libspopc
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki libspopc
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for libspopc library.
 
-%description devel -l pl
-Pliki nag³ówkowe biblioteki libspopc.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki libspopc.
 
 %package static
 Summary:	Static libspopc library
-Summary(pl):	Statyczna biblioteka libspopc
+Summary(pl.UTF-8):   Statyczna biblioteka libspopc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libspopc library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka libspopc.
 
 %prep
