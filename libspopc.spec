@@ -1,5 +1,5 @@
 Summary:	simple-to-use POP3 client library
-Summary(pl.UTF-8):   łatwa w użycia biblioteka klienta POP3
+Summary(pl.UTF-8):	łatwa w użycia biblioteka klienta POP3
 Name:		libspopc
 Version:	0.7.2
 Release:	1
@@ -35,7 +35,7 @@ wiadomości przed ściągnięciem jej treści.
 
 %package devel
 Summary:	Header files for libspopc library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki libspopc
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libspopc
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -47,7 +47,7 @@ Pliki nagłówkowe biblioteki libspopc.
 
 %package static
 Summary:	Static libspopc library
-Summary(pl.UTF-8):   Statyczna biblioteka libspopc
+Summary(pl.UTF-8):	Statyczna biblioteka libspopc
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
