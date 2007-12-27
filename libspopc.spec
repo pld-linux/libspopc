@@ -1,12 +1,12 @@
 Summary:	simple-to-use POP3 client library
 Summary(pl.UTF-8):	łatwa w użycia biblioteka klienta POP3
 Name:		libspopc
-Version:	0.7.2
+Version:	0.7.5
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://brouits.free.fr/libspopc/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	8031d23b25f60dafbdce82d60d2facb4
+# Source0-md5:	4e5446d30c107b2e6a71e735879208aa
 Source1:	http://brouits.free.fr/libspopc/try_autogen.tgz
 # Source1-md5:	f63f8a26294e5b9f21d78275ff99ec55
 URL:		http://brouits.free.fr/libspopc/
