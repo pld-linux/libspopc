@@ -1,14 +1,15 @@
 Summary:	simple-to-use POP3 client library
 Summary(pl.UTF-8):	łatwa w użycia biblioteka klienta POP3
 Name:		libspopc
-Version:	0.8
+Version:	0.10
 Release:	1
 License:	LGPL
 Group:		Libraries
-Source0:	http://brouits.free.fr/libspopc/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	b9e67912dc2d58008e636ed7729b2c52
+Source0:	http://brouits.free.fr/libspopc/releases/%{name}-%{version}-1.tar.gz
+# Source0-md5:	f3b364a2c5d1d33ec7cc4dec5aaee43d
 Source1:	http://brouits.free.fr/libspopc/try_autogen.tgz
 # Source1-md5:	f63f8a26294e5b9f21d78275ff99ec55
+Patch0:		%{name}-am.patch
 URL:		http://brouits.free.fr/libspopc/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -58,8 +59,9 @@ Static libspopc library.
 Statyczna biblioteka libspopc.
 
 %prep
-%setup -q -a1
+%setup -q -n %{name}-%{version}-1 -a1
 cp -Rf try_autogen/* .
+%patch0 -p1
 
 %build
 %{__libtoolize}
