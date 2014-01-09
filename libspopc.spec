@@ -1,19 +1,15 @@
 Summary:	simple-to-use POP3 client library
 Summary(pl.UTF-8):	łatwa w użycia biblioteka klienta POP3
 Name:		libspopc
-Version:	0.10
+Version:	0.12
 Release:	1
 License:	LGPL
 Group:		Libraries
-Source0:	http://brouits.free.fr/libspopc/releases/%{name}-%{version}-1.tar.gz
-# Source0-md5:	f3b364a2c5d1d33ec7cc4dec5aaee43d
-Source1:	http://brouits.free.fr/libspopc/try_autogen.tgz
-# Source1-md5:	f63f8a26294e5b9f21d78275ff99ec55
-Patch0:		%{name}-am.patch
+Source0:	http://brouits.free.fr/libspopc/releases/%{name}-%{version}.tar.gz
+# Source0-md5:	82a9fad896450fa4a95831f614cbd959
 URL:		http://brouits.free.fr/libspopc/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	openssl-devel
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -59,27 +55,49 @@ Static libspopc library.
 Statyczna biblioteka libspopc.
 
 %prep
-%setup -q -n %{name}-%{version}-1 -a1
-cp -Rf try_autogen/* .
-%patch0 -p1
+%setup -q
+cat <<EOF > Makefile.pld
+CC=%{__cc}
+CFLAGS=%{rpmcflags} -Wall -Wextra -pedantic -pipe -fPIC -DUSE_SSL -D_REENTRANT -DUSE_SEM
+LDFLAGS=%{rpmldflags}
+LIBS=-lssl -lcrypto -lrt -pthread
+OBJECTS=session.o queries.o parsing.o format.o objects.o libspopc.o mutex.o
+
+all: libspopc.a libspopc.so.0.12.0
+
+%.o : %.c libspopc.h
+	\$(CC) \$(CFLAGS) -c \$<
+
+libspopc.a : \$(OBJECTS)
+	\$(RM) libspopc*.a
+	ar r libspopc.a \$(OBJECTS)
+	ranlib libspopc.a
+
+libspopc.so.0.12.0 : \$(OBJECTS)
+	\$(RM) libspopc*.so*
+	\$(CC) -o libspopc.so.0.12.0 -shared \$(LDFLAGS) -Wl,-soname,libspopc.so.0 \$(OBJECTS) \$(LIBS)
+
+install :
+	install libspopc.a \$(DESTDIR)/%{_libdir}
+	install libspopc.so.0.12.0 \$(DESTDIR)/%{_libdir}
+	ln -sf libspopc.so.0.12.0 \$(DESTDIR)/%{_libdir}/libspopc.so.0
+	ln -sf libspopc.so.0.12.0 \$(DESTDIR)/%{_libdir}/libspopc.so
+	install libspopc.h \$(DESTDIR)/usr/include/
+EOF
+
+sed -i -e 's|\.\./libspopc\.h|libspopc.h|' examples/*.c
 
 %build
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure
-%{__make}
+%{__make} -f Makefile.pld
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_includedir}
+install -d $RPM_BUILD_ROOT{%{_includedir},%{_libdir},%{_examplesdir}/%{name}-%{version}}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT -f Makefile.pld
 
-install %{name}.h $RPM_BUILD_ROOT%{_includedir}
+cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -89,15 +107,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%doc AUTHORS ChangeLog README
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/lib*.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/%{name}.h
-%{_libdir}/lib*.la
+%{_examplesdir}/%{name}-%{version}
 
 %files static
 %defattr(644,root,root,755)
