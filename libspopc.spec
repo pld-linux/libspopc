@@ -58,7 +58,7 @@ Statyczna biblioteka libspopc.
 %setup -q
 cat <<EOF > Makefile.pld
 CC=%{__cc}
-CFLAGS=%{rpmcflags} -Wall -Wextra -pedantic -pipe -fPIC -DUSE_SSL -D_REENTRANT -DUSE_SEM
+CFLAGS=%{rpmcflags} %{rpmcppflags} -Wall -Wextra -pedantic -pipe -fPIC -DUSE_SSL -D_REENTRANT -DUSE_SEM
 LDFLAGS=%{rpmldflags}
 LIBS=-lssl -lcrypto -lrt -pthread
 OBJECTS=session.o queries.o parsing.o format.o objects.o libspopc.o mutex.o
@@ -108,15 +108,15 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
-%attr(755,root,root) %ghost %{_libdir}/lib*.so.0
+%attr(755,root,root) %{_libdir}/libspopc.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libspopc.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_includedir}/%{name}.h
+%attr(755,root,root) %{_libdir}/libspopc.so
+%{_includedir}/libspopc.h
 %{_examplesdir}/%{name}-%{version}
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libspopc.a
